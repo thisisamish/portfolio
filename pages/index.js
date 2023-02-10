@@ -66,7 +66,7 @@ export default function Home() {
             backgroundSize: "cover",
           }}
         > */}
-        <section className="flex items-center flex-col md:flex-row justify-center md:justify-between py-36 mx-auto md:max-w-2xl lg:max-w-4xl">
+        <section className="flex items-center flex-col md:flex-row justify-center md:justify-between py-36 mx-auto md:max-w-2xl lg:max-w-4xl px-10 md:px-0">
           <div>
             <div className="md:text-left text-center">
               <h2 className="text-6xl font-bold tracking-tight mb-6">
@@ -79,7 +79,7 @@ export default function Home() {
                 skilled in React.js and Next.js
               </p>
 
-              <button className="text-lg py-4 px-8 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg mb-10 md:mb-0 border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center">
+              <button className="mx-auto md:mx-0 text-lg py-4 px-8 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg mb-10 md:mb-0 border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center">
                 <FaFileDownload />
                 Download My Resume
               </button>
@@ -170,7 +170,7 @@ export default function Home() {
           <h2 className="text-[2rem] tracking-[-1px] mb-12 font-bold text-center">
             Skills
           </h2>
-          <div className="flex flex-col md:flex-row gap-12 justify-center md:items-stretch items-center mx-auto">
+          <div className="ml-10 sm:ml-20 md:ml-0 flex flex-col md:flex-row gap-12 justify-center items-stretch mx-auto">
             {/* Languages */}
             <div className="md:border-r-2 md:border-gray-300 md:pr-24">
               <h3 className="text-2xl font-medium mb-6">
