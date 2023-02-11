@@ -3,8 +3,7 @@ import Link from "next/link";
 import { BsFillMoonStarsFill } from "react-icons/bs";
 import Image from "next/image";
 import amish from "@/public/amish.jpg";
-import demo from "@/public/demo.jpg";
-import bg from "@/public/bg.webp";
+import demo from "@/public/demo.webp";
 import { FaFileDownload } from "react-icons/fa";
 import {
   SiJavascript,
@@ -20,8 +19,47 @@ import {
   SiVisualstudiocode,
   SiNextdotjs,
 } from "react-icons/si";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [menuBar1Style, setMenuBar1Style] = useState(
+    "border-t-2 border-white w-[30px] transition-all"
+  );
+  const [menuBar2Style, setMenuBar2Style] = useState(
+    "border-t-2 border-white w-[30px] transition-all"
+  );
+  const [menuBar3Style, setMenuBar3Style] = useState(
+    "border-t-2 border-white w-[30px] transition-all"
+  );
+
+  const [menuActive, setMenuActive] = useState(false);
+
+  const [navListStyle, setNavListStyle] = useState("trasition-all hidden");
+
+  const handleOnClick = () => {
+    if (menuActive) {
+      setMenuActive(false);
+      setMenuBar1Style("border-t-2 border-white w-[30px] transition-all");
+      setMenuBar2Style("border-t-2 border-white w-[30px] transition-all");
+      setMenuBar3Style("border-t-2 border-white w-[30px] transition-all");
+
+      setNavListStyle("transition-all hidden");
+    } else {
+      setMenuActive(true);
+      setMenuBar1Style(
+        (prev) => prev + " rotate-[36deg] translate-y-1 w-[37px]"
+      );
+      setMenuBar2Style((prev) => prev + " hidden");
+      setMenuBar3Style(
+        (prev) => prev + " -rotate-[36deg] w-[37px] -translate-y-[5px]"
+      );
+
+      setNavListStyle(
+        "transition-all pt-6 flex items-end flex-col gap-6 visible"
+      );
+    }
+  };
+
   return (
     <>
       <Head>
@@ -31,30 +69,64 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <nav className="p-6 bg-black flex flex-wrap justify-between text-white">
-        <h1 className="text-2xl font-black tracking-wide">AMISH</h1>
-        <ul className="flex items-center gap-6">
-          <li>
+      <nav className="p-6 bg-black text-white">
+        <div className="flex flex-wrap justify-between">
+          <h1 className="text-2xl font-black tracking-wide">AMISH</h1>
+          <button
+            onClick={handleOnClick}
+            className="flex flex-col items-center justify-center gap-2 sm:hidden transition-all"
+          >
+            <div className={menuBar1Style}></div>
+            <div className={menuBar2Style}></div>
+            <div className={menuBar3Style}></div>
+          </button>
+          <ul className="sm:flex sm:items-center sm:gap-6 hidden">
+            {/* <li>
+              <BsFillMoonStarsFill className="cursor-pointer text-2xl" />
+            </li> */}
+            <li>
+              <Link href="#projects" className="hover:text-[#c2c2c2]">
+                Projects
+              </Link>
+            </li>
+            <li>
+              <Link href="#contact" className="hover:text-[#c2c2c2]">
+                Contact
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/"
+                className="py-2.5 px-5 text-white hover:text-black transition-all font-semibold bg-black border-[1px] border-[#FFD700] hover:bg-[#FFD700] rounded-lg"
+              >
+                Resume
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <ul className={navListStyle}>
+          {/* <li>
             <BsFillMoonStarsFill className="cursor-pointer text-2xl" />
-          </li>
+          </li> */}
           <li>
-            <Link href="/" className="">
+            <Link href="#projects" className="hover:text-[#c2c2c2]">
               Projects
             </Link>
           </li>
           <li>
-            <Link href="/" className="">
+            <Link href="#contact" className="hover:text-[#c2c2c2]">
               Contact
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               href="/"
               className="py-2.5 px-5 text-white hover:text-black transition-all font-semibold bg-black border-[1px] border-[#FFD700] hover:bg-[#FFD700] rounded-lg"
             >
               Resume
             </Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
 
@@ -79,7 +151,7 @@ export default function Home() {
                 skilled in React.js and Next.js
               </p>
 
-              <button className="mx-auto md:mx-0 text-lg py-4 px-8 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg mb-10 md:mb-0 border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center">
+              <button className="mx-auto md:mx-0 text-lg py-4 px-6 sm:px-8 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg mb-10 md:mb-0 border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center">
                 <FaFileDownload />
                 Download My Resume
               </button>
@@ -93,7 +165,11 @@ export default function Home() {
           </div>
 
           <div className="rounded-full w-80 h-80 aspect-[1/1] overflow-hidden">
-            <Image src={amish} style={{ objectFit: "cover" }} />
+            <Image
+              src={amish}
+              alt="amish's photo, smiling"
+              style={{ objectFit: "cover" }}
+            />
           </div>
         </section>
         {/* </section> */}
@@ -126,7 +202,8 @@ export default function Home() {
             <ul className="flex flex-wrap gap-4 text-lg">
               <li>
                 <Link
-                  href="/"
+                  href="mailto:amishhverma@gmail.com"
+                  target="_blank"
                   className="border-r-2 border-black pr-4 hover:text-[#767676]"
                 >
                   Email
@@ -134,7 +211,8 @@ export default function Home() {
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="https://www.linkedin.com/in/amishverma/"
+                  target="_blank"
                   className="border-r-2 border-black pr-4 hover:text-[#767676]"
                 >
                   LinkedIn
@@ -142,7 +220,8 @@ export default function Home() {
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="https://github.com/thisisamish"
+                  target="_blank"
                   className="border-r-2 border-black pr-4 hover:text-[#767676]"
                 >
                   GitHub
@@ -150,14 +229,19 @@ export default function Home() {
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="https://twitter.com/thisisamish"
+                  target="_blank"
                   className="border-r-2 border-black pr-4 hover:text-[#767676]"
                 >
                   Twitter
                 </Link>
               </li>
               <li>
-                <Link href="/" className="hover:text-[#767676]">
+                <Link
+                  href="https://www.instagram.com/thisisamish/"
+                  target="_blank"
+                  className="hover:text-[#767676]"
+                >
                   Instagram
                 </Link>
               </li>
@@ -247,14 +331,21 @@ export default function Home() {
         </section>
 
         {/* Projects */}
-        <section className="bg-[#fafafa] border-t-[1px] border-t-[#eaeaea] py-16 px-10">
+        <section
+          id="projects"
+          className="bg-[#fafafa] border-t-[1px] border-t-[#eaeaea] py-16 px-10"
+        >
           <h2 className="text-[2rem] tracking-[-1px] mb-12 font-bold text-center">
             Projects I've Made
           </h2>
           <div className=" max-w-6xl flex gap-6 flex-wrap items-center justify-center mx-auto">
             <div className="border-[1px] border-gray-300 hover:border-black rounded-xl max-w-[350px] transition-all">
               <div className="h-[150px] overflow-hidden rounded-t-xl">
-                <Image src={demo} style={{ objectFit: "cover" }} />
+                <Image
+                  src={demo}
+                  alt="journeys blog project decorative image"
+                  style={{ objectFit: "cover" }}
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-3xl font-bold pb-4">Journeys Blog</h3>
@@ -273,14 +364,15 @@ export default function Home() {
                 </p>
                 <div className="flex gap-2 pt-6">
                   <Link
-                    href="/"
-                    className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg mb-10 md:mb-0 border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
+                    href="https://github.com/thisisamish/journeys-blog"
+                    target="_blank"
+                    className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
                   >
                     View on GitHub
                   </Link>
                   <Link
                     href="/"
-                    className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg mb-10 md:mb-0 border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
+                    className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
                   >
                     Open Website
                   </Link>
@@ -290,7 +382,11 @@ export default function Home() {
 
             <div className="border-[1px] border-gray-300 hover:border-black rounded-xl max-w-[350px] transition-all">
               <div className="h-[150px] overflow-hidden rounded-t-xl">
-                <Image src={demo} style={{ objectFit: "cover" }} />
+                <Image
+                  src={demo}
+                  alt="wordle clone project decorative image"
+                  style={{ objectFit: "cover" }}
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-3xl font-bold pb-4">Wordle Clone</h3>
@@ -306,14 +402,15 @@ export default function Home() {
                 </p>
                 <div className="flex gap-2 pt-6">
                   <Link
-                    href="/"
-                    className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg mb-10 md:mb-0 border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
+                    href="https://github.com/thisisamish/wordle"
+                    target="_blank"
+                    className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
                   >
                     View on GitHub
                   </Link>
                   <Link
                     href="/"
-                    className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg mb-10 md:mb-0 border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
+                    className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
                   >
                     Open Website
                   </Link>
@@ -323,7 +420,11 @@ export default function Home() {
 
             <div className="border-[1px] border-gray-300 hover:border-black rounded-xl max-w-[350px] transition-all">
               <div className="h-[150px] overflow-hidden rounded-t-xl">
-                <Image src={demo} style={{ objectFit: "cover" }} />
+                <Image
+                  src={demo}
+                  alt="notes app project decorative image"
+                  style={{ objectFit: "cover" }}
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-3xl font-bold pb-4">Notes App</h3>
@@ -342,14 +443,15 @@ export default function Home() {
                 </p>
                 <div className="flex gap-2 pt-6">
                   <Link
-                    href="/"
-                    className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg mb-10 md:mb-0 border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
+                    href="https://github.com/thisisamish/notes-app"
+                    target="_blank"
+                    className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
                   >
                     View on GitHub
                   </Link>
                   <Link
                     href="/"
-                    className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg mb-10 md:mb-0 border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
+                    className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
                   >
                     Open Website
                   </Link>
@@ -360,9 +462,15 @@ export default function Home() {
         </section>
 
         {/* Contact */}
-        <section className="py-32 px-10 border-t-[1px] border-t-[#eaeaea] text-5xl font-medium tracking-tighter xl:pl-44 md:pl-28">
+        <section
+          id="contact"
+          className="py-32 px-10 border-t-[1px] border-t-[#eaeaea] text-5xl font-medium tracking-tighter xl:pl-44 md:pl-28"
+        >
           <h2 className="mb-2">Let's get to know each other.</h2>
-          <Link href="/" className="hover:text-[#b3b3b3] text-[#969696]">
+          <Link
+            href="mailto:amishhverma@gmail.com"
+            className="hover:text-[#b3b3b3] text-[#969696]"
+          >
             Get in touch.
           </Link>
         </section>
@@ -372,16 +480,40 @@ export default function Home() {
         <h3>© Amish Verma 2023</h3>
         <ul className="sm:flex grid grid-cols-2 sm:flex-row gap-2 sm:gap-4">
           <li>
-            <Link href="/">LinkedIn</Link>
+            <Link
+              href="https://www.linkedin.com/in/amishverma/"
+              target="_blank"
+              className="hover:text-[#bfbfbf]"
+            >
+              LinkedIn
+            </Link>
           </li>
           <li>
-            <Link href="/">GitHub</Link>
+            <Link
+              href="https://github.com/thisisamish"
+              target="_blank"
+              className="hover:text-[#bfbfbf]"
+            >
+              GitHub
+            </Link>
           </li>
           <li>
-            <Link href="/">Twitter</Link>
+            <Link
+              href="https://twitter.com/thisisamish"
+              target="_blank"
+              className="hover:text-[#bfbfbf]"
+            >
+              Twitter
+            </Link>
           </li>
           <li>
-            <Link href="/">Instagram</Link>
+            <Link
+              href="https://www.instagram.com/thisisamish/"
+              target="_blank"
+              className="hover:text-[#bfbfbf]"
+            >
+              Instagram
+            </Link>
           </li>
         </ul>
       </footer>
