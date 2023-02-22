@@ -15,11 +15,12 @@ import {
   SiGit,
   SiFirebase,
   SiCplusplus,
-  SiFlask,
+  SiTailwindcss,
   SiVisualstudiocode,
   SiNextdotjs,
+  SiGithub,
 } from "react-icons/si";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Home() {
   const [menuBar1Style, setMenuBar1Style] = useState(
@@ -96,7 +97,8 @@ export default function Home() {
             </li>
             <li>
               <Link
-                href="/"
+                href="https://drive.google.com/file/d/1KFJAPKOJxEdilELGp0Wuig3LHjalccPx/view?usp=sharing"
+                target="_blank"
                 className="py-2.5 px-5 text-white hover:text-black transition-all font-semibold bg-black border-[1px] border-[#FFD700] hover:bg-[#FFD700] rounded-lg"
               >
                 Resume
@@ -151,10 +153,14 @@ export default function Home() {
                 skilled in React.js and Next.js
               </p>
 
-              <button className="mx-auto md:mx-0 text-lg py-4 px-6 sm:px-8 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg mb-10 md:mb-0 border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center">
+              <Link
+                className="mx-auto md:mx-0 text-lg py-4 px-6 sm:px-8 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg mb-10 md:mb-0 border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
+                href="https://drive.google.com/file/d/1KFJAPKOJxEdilELGp0Wuig3LHjalccPx/view?usp=sharing"
+                target="_blank"
+              >
                 <FaFileDownload />
                 Download My Resume
-              </button>
+              </Link>
             </div>
 
             {/* <div className="text-5xl flex gap-5 mr-48">
@@ -183,21 +189,25 @@ export default function Home() {
             </p>
             <p className="text-[#767676] font-medium mb-4">
               I was born in the holy city of Ayodhya and I'm currently studying
-              engineering at JSS Academy of Technical Education, Noida. Creating
-              beautiful, scalable and flexible frontend for websites is my
-              passion. Although I'm deft in React.js and Next.js, I can just as
-              easily migrate to other libraries and frameworks with ease. I also
-              have experience in using Firebase.
+              engineering at JSS Academy of Technical Education, Noida.
+              <br />
+              Creating beautiful, scalable and flexible frontend for websites is
+              my passion. I am experienced in using Next.js with Firebase and
+              Tailwind to create full-stack web applications. I'm also
+              framework-agnostic so I can easily shift to any new technology in
+              a couple weeks.
             </p>
             <p className="text-[#767676] font-medium mb-4">
               I believe that hard work, consistency and collaboration are the
-              key to success and I always work with these values.
+              key to success. I love meeting new people and talking about all
+              things tech, so if you have a project to collaborate on, need a
+              hackathon partner or just want to have a good chat, hit me up on
+              any social media. I would really like that.
             </p>
             <p className="text-[#767676] font-medium mb-6">
-              I love meeting new people, so if you have a project to collaborate
-              on or just want to chat about all things tech, I'm always ready
-              for that. I am also actively looking for internships so if you
-              have an opportunity for me, please contact me on the below links.
+              I am also actively looking for internships so if you have an
+              opportunity for me, please contact me on the below links. I'd be
+              highly indebted.
             </p>
             <ul className="flex flex-wrap gap-4 text-lg">
               <li>
@@ -303,8 +313,8 @@ export default function Home() {
                   Next.js
                 </li>
                 <li className="py-1 mb-2 mr-2 px-4 bg-[#fafafa] border-[1px] border-[#eaeaea] rounded-xl max-w-fit flex items-center gap-2 justify-center text-lg">
-                  <SiFlask />
-                  Flask
+                  <SiTailwindcss />
+                  Tailwind
                 </li>
               </ul>
             </div>
@@ -316,6 +326,10 @@ export default function Home() {
                 <li className="py-1 mb-2 mr-2 px-4 bg-[#fafafa] border-[1px] border-[#eaeaea] rounded-xl max-w-fit flex items-center gap-2 justify-center text-lg">
                   <SiGit />
                   Git
+                </li>
+                <li className="py-1 mb-2 mr-2 px-4 bg-[#fafafa] border-[1px] border-[#eaeaea] rounded-xl max-w-fit flex items-center gap-2 justify-center text-lg">
+                  <SiGithub />
+                  GitHub
                 </li>
                 <li className="py-1 mb-2 mr-2 px-4 bg-[#fafafa] border-[1px] border-[#eaeaea] rounded-xl max-w-fit flex items-center gap-2 justify-center text-lg">
                   <SiFirebase />
@@ -358,9 +372,10 @@ export default function Home() {
                   </li>
                 </ul>
                 <p className="pt-4">
-                  A blog app built using Next.js and Firebase. Deployed on
-                  Vercel. Supports authorization with Google. Users can create,
-                  read and like posts.
+                  A blog app for developers to share their programming journey.
+                  Built using Next.js and Firebase. Supports authorization with
+                  Google. Once logged in, users can create new posts, read and
+                  like others' posts.
                 </p>
                 <div className="flex gap-2 pt-6">
                   <Link
@@ -371,7 +386,8 @@ export default function Home() {
                     View on GitHub
                   </Link>
                   <Link
-                    href="/"
+                    href="https://journeys-blog.vercel.app/"
+                    target="_blank"
                     className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
                   >
                     Open Website
@@ -396,9 +412,11 @@ export default function Home() {
                   </li>
                 </ul>
                 <p className="pt-4">
-                  A blog app built using Next.js and Firebase. Deployed on
-                  Vercel. Supports authorization with Google. Users can create,
-                  read and like posts.
+                  Clone of the smash-hit game Wordle. Guess a 5-letter word in 6
+                  tries. Extremely addictive. Developed using React.js.
+                  <br />
+                  <br />
+                  <br />
                 </p>
                 <div className="flex gap-2 pt-6">
                   <Link
@@ -409,7 +427,8 @@ export default function Home() {
                     View on GitHub
                   </Link>
                   <Link
-                    href="/"
+                    href="https://wordle-thisisamish.netlify.app/"
+                    target="_blank"
                     className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
                   >
                     Open Website
@@ -427,7 +446,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-3xl font-bold pb-4">Notes App</h3>
+                <h3 className="text-3xl font-bold pb-4">Hangman</h3>
                 <ul className="flex gap-2">
                   <li className="bg-white border-[1px] border-[#eaeaea] rounded-md px-2 py-1 text-sm">
                     React.js
@@ -437,20 +456,22 @@ export default function Home() {
                   </li>
                 </ul>
                 <p className="pt-4">
-                  A blog app built using Next.js and Firebase. Deployed on
-                  Vercel. Supports authorization with Google. Users can create,
-                  read and like posts.
+                  The classic Hangman game, built with React.js and TypeScript.
+                  Try to guess the correct word with as few mistakes as possible
+                  because each incorrect guess leads the poor man closer to
+                  getting hanged!
                 </p>
                 <div className="flex gap-2 pt-6">
                   <Link
-                    href="https://github.com/thisisamish/notes-app"
+                    href="https://github.com/thisisamish/hangman"
                     target="_blank"
                     className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
                   >
                     View on GitHub
                   </Link>
                   <Link
-                    href="/"
+                    href="https://hangman-thisisamish.netlify.app/"
+                    target="_blank"
                     className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
                   >
                     Open Website
