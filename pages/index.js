@@ -140,7 +140,7 @@ export default function Home() {
             backgroundSize: "cover",
           }}
         > */}
-        <section className="flex items-center flex-col md:flex-row justify-center md:justify-between py-36 mx-auto md:max-w-2xl lg:max-w-4xl px-10 md:px-0">
+        <section className="flex items-center flex-col md:flex-row justify-center md:justify-between h-screen mx-auto md:max-w-2xl lg:max-w-4xl px-10 md:px-0">
           <div>
             <div className="md:text-left text-center">
               <h2 className="text-6xl font-bold tracking-tight mb-6">
@@ -170,7 +170,7 @@ export default function Home() {
             </div> */}
           </div>
 
-          <div className="rounded-full w-80 h-80 aspect-[1/1] overflow-hidden">
+          <div className="rounded-full w-64 h-64 sm:w-80 sm:h-80 aspect-[1/1] overflow-hidden">
             <Image
               src={amish}
               alt="amish's photo, smiling"
