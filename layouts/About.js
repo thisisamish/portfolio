@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import amish from "@/public/amish.jpg";
 
 export default function About() {
   return (
