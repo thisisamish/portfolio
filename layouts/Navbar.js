@@ -74,7 +74,7 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              href="https://drive.google.com/file/d/1KFJAPKOJxEdilELGp0Wuig3LHjalccPx/view?usp=sharing"
+              href="https://drive.google.com/file/d/1_KX16QORbxLvqGplFFX8VSyCc5NFCI7b/view?usp=sharing"
               target="_blank"
               className="py-2.5 px-5 text-white hover:text-black transition-all font-semibold bg-black border-[1px] border-[#FFD700] hover:bg-[#FFD700] rounded-lg"
             >
