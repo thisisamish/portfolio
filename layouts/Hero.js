@@ -11,7 +11,7 @@ export default function Hero() {
           <p className="text-4xl font-medium mb-4 max-[400px]:hidden">👋🏻</p>
           <h2 className="text-6xl font-extrabold mb-4">I'm Amish.</h2>
           <p className="text-lg font-medium text-gray-500 mb-5">
-            Frontend Web Developer,
+            Full-stack Web Developer,
             <br />
             Digital Nomad
           </p>
