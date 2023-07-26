@@ -21,31 +21,36 @@ export default function Projects() {
             />
           </div>
           <div className="p-6">
-            <h3 className="text-3xl font-bold pb-4">Journeys Blog</h3>
+            <h3 className="text-3xl font-bold pb-4">Dev Support</h3>
             <ul className="flex gap-2">
               <li className="bg-white border-[1px] border-[#eaeaea] rounded-md px-2 py-1 text-sm">
                 Next.js
+              </li>
+              <li className="bg-white border-[1px] border-[#eaeaea] rounded-md px-2 py-1 text-sm">
+                Tailwind CSS
               </li>
               <li className="bg-white border-[1px] border-[#eaeaea] rounded-md px-2 py-1 text-sm">
                 Firebase
               </li>
             </ul>
             <p className="pt-4">
-              A blog app for developers to share their programming journey.
-              Built using Next.js and Firebase. Supports authorization with
-              Google. Once logged in, users can create new posts, read and like
-              others' posts.
+              A full-stack blog application inspired by dev.to. Users can view
+              others' blog posts as well as create their own. They can log in
+              with their Google account and create a unique username. After
+              logging in, they can create new blog posts and publish them for
+              everyone to read. There's markdown support by default so
+              formatting is really easy.
             </p>
             <div className="flex gap-2 pt-6">
               <Link
-                href="https://github.com/thisisamish/journeys-blog"
+                href="https://github.com/thisisamish/dev-support"
                 target="_blank"
                 className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
               >
                 View on GitHub
               </Link>
               <Link
-                href="https://journeys-blog.vercel.app/"
+                href="https://dev-support.vercel.app/"
                 target="_blank"
                 className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
               >
@@ -56,6 +61,48 @@ export default function Projects() {
         </div>
 
         <div className="border-[1px] border-gray-300 hover:border-black rounded-xl max-w-[350px] transition-all">
+          <div className="h-[150px] overflow-hidden rounded-t-xl">
+            <Image
+              src={demo}
+              alt="journeys blog project decorative image"
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+          <div className="p-6">
+            <h3 className="text-3xl font-bold pb-4">Renter</h3>
+            <ul className="flex gap-2">
+              <li className="bg-white border-[1px] border-[#eaeaea] rounded-md px-2 py-1 text-sm">
+                Node.js
+              </li>
+              <li className="bg-white border-[1px] border-[#eaeaea] rounded-md px-2 py-1 text-sm">
+                express.js
+              </li>
+              <li className="bg-white border-[1px] border-[#eaeaea] rounded-md px-2 py-1 text-sm">
+                MongoDB
+              </li>
+            </ul>
+            <p className="pt-4">
+              A back-end server for a video renting store with full
+              authentication support using JWT.
+              <br />
+              Four RESTful APIs - some of them open for all, some of them
+              protected. All the routes have proper request validation and
+              relevant middlewares. Visit the GitHub repository to know more
+              about all the routes.
+            </p>
+            <div className="flex gap-2 pt-6">
+              <Link
+                href="https://github.com/thisisamish/renter"
+                target="_blank"
+                className="py-2 px-4 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
+              >
+                View on GitHub
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* <div className="border-[1px] border-gray-300 hover:border-black rounded-xl max-w-[350px] transition-all">
           <div className="h-[150px] overflow-hidden rounded-t-xl">
             <Image
               src={demo}
@@ -94,9 +141,9 @@ export default function Projects() {
               </Link>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="border-[1px] border-gray-300 hover:border-black rounded-xl max-w-[350px] transition-all">
+        {/* <div className="border-[1px] border-gray-300 hover:border-black rounded-xl max-w-[350px] transition-all">
           <div className="h-[150px] overflow-hidden rounded-t-xl">
             <Image
               src={demo}
@@ -136,7 +183,7 @@ export default function Projects() {
               </Link>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
