@@ -24,7 +24,7 @@ export default function Hero() {
           </div>
           <Link
             className="mx-auto md:mx-0 text-lg py-4 px-4 sm:px-8 bg-black text-white shadow-gray-400 shadow-2xl rounded-lg mb-10 md:mb-0 border-[1px] border-black hover:bg-white hover:text-black transition-all flex gap-2 items-center justify-center"
-            href="https://drive.google.com/file/d/1KFJAPKOJxEdilELGp0Wuig3LHjalccPx/view?usp=sharing"
+            href="https://drive.google.com/file/d/1_KX16QORbxLvqGplFFX8VSyCc5NFCI7b/view?usp=sharing"
             target="_blank"
           >
             <FaFileDownload />
