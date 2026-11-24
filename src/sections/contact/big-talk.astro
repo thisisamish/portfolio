@@ -1,0 +1,30 @@
+---
+import Container from '../../components/Container.astro';
+import { inline } from '../../lib/inline';
+import type { ContactContent } from './schema';
+
+interface Props {
+  content: ContactContent;
+}
+const { content } = Astro.props;
+---
+<footer class="contact">
+  <Container class="inner">
+    <h2 class="display" set:html={inline(content.heading, 'em')} />
+    <ul class="label">
+      {content.links.map((l) => (
+        <li><a href={l.href} target={l.href.startsWith('http') ? '_blank' : undefined} rel="noopener">{l.label}</a></li>
+      ))}
+    </ul>
+  </Container>
+</footer>
+
+<style>
+  .contact { border-top: 1px solid var(--c-line); padding-block: 12vh 8vh; }
+  .inner { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+  h2 { margin: 0; font-size: var(--t-size-contact); line-height: calc(var(--t-display-leading) - 0.02); }
+  h2 :global(em) { font-style: normal; color: var(--c-accent); }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; letter-spacing: 0.1em; }
+  a { color: var(--c-muted); }
+  a:hover { color: var(--c-accent); }
+</style>

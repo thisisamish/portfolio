@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+/* Tailwind utilities (bg-bg, text-accent, font-display, ...) point at the CSS variables generated from src/config/theme.ts. */
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-bg2: var(--c-bg2);
+  --color-ink: var(--c-ink);
+  --color-muted: var(--c-muted);
+  --color-base: var(--c-base);
+  --color-lamp: var(--c-lamp);
+  --color-accent: var(--c-accent);
+  --color-line: var(--c-line);
+  --font-display: var(--f-display);
+  --font-body: var(--f-body);
+  --font-mono: var(--f-mono);
+}
+
+html { background: var(--c-bg); scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--f-body);
+  font-size: var(--t-size-body);
+  line-height: var(--t-leading-body);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 4px; border-radius: 2px; }
+
+/* Shared type primitives used by every section */
+.display {
+  font-family: var(--f-display);
+  font-weight: var(--t-display-weight);
+  text-transform: var(--t-display-transform);
+  letter-spacing: var(--t-display-tracking);
+}
+.label { font: 500 0.74rem/1 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; }
+.section-title { margin: 0 0 clamp(28px, 4vw, 48px); font-size: var(--t-size-section-title); line-height: var(--t-display-leading); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}

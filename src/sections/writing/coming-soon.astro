@@ -1,0 +1,30 @@
+---
+import Container from '../../components/Container.astro';
+import type { WritingContent } from './schema';
+
+interface Props {
+  content: WritingContent;
+}
+const { content } = Astro.props;
+---
+<section class="writing">
+  <Container>
+    <p class="kicker label">{content.kicker}</p>
+    <h2 class="section-title display">{content.title}</h2>
+    <p class="body">{content.body}</p>
+    <div class="slots" aria-hidden="true">
+      {Array.from({ length: content.slots }, () => (
+        <div class="slot"><span>{content.slotLabel}</span><span class="label">{content.soonLabel}</span></div>
+      ))}
+    </div>
+  </Container>
+</section>
+
+<style>
+  .writing { padding-block: 10vh; }
+  .kicker { color: var(--c-muted); margin: 0 0 clamp(24px, 4vh, 44px); }
+  .body { max-width: 52ch; color: var(--c-muted); margin: 0; }
+  .slots { margin-top: 28px; display: grid; max-width: 720px; }
+  .slot { display: flex; justify-content: space-between; gap: 16px; padding-block: 16px; border-top: 1px dashed var(--c-line); color: var(--c-base); font-size: 0.95rem; }
+  .slot:last-child { border-bottom: 1px dashed var(--c-line); }
+</style>

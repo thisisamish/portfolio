@@ -1,0 +1,41 @@
+---
+import Container from '../../components/Container.astro';
+import type { WorkContent } from './schema';
+
+interface Props {
+  content: WorkContent;
+}
+const { content } = Astro.props;
+---
+<section class="work">
+  <Container>
+    <p class="kicker label">{content.kicker}</p>
+    <ul class="projects">
+      {content.projects.map((p) => (
+        <li class:list={{ placeholder: p.placeholder }}>
+          <a href={p.href ?? '#work'} target={p.href ? '_blank' : undefined} rel={p.href ? 'noopener' : undefined}>
+            <span class="name">{p.name}</span>
+            <p class="desc">{p.description}</p>
+            <span class="go" aria-hidden="true">&nearr;</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>
+
+<style>
+  .work { padding-block: 10vh; border-top: 1px solid var(--c-line); }
+  .kicker { color: var(--c-muted); margin: 0 0 clamp(24px, 4vh, 44px); }
+  .projects { list-style: none; margin: 0; padding: 0; }
+  li { border-top: 1px solid var(--c-line); }
+  li:last-child { border-bottom: 1px solid var(--c-line); }
+  a { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr) auto; gap: 8px 32px; align-items: baseline; padding-block: 26px; transition: padding-left .25s; }
+  a:hover { padding-left: 12px; }
+  a:hover .name { color: var(--c-accent); }
+  .name { font-size: clamp(1.3rem, 2.4vw, 1.8rem); font-weight: 500; letter-spacing: -0.01em; transition: color .2s; }
+  .desc { color: var(--c-muted); margin: 0; max-width: 52ch; }
+  .go { font-family: var(--f-mono); color: var(--c-accent); }
+  .placeholder { opacity: .55; }
+  @media (max-width: 760px) { a { grid-template-columns: minmax(0, 1fr) auto; } .desc { grid-column: 1 / -1; grid-row: 2; } }
+</style>

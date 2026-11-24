@@ -1,0 +1,51 @@
+---
+import Container from './Container.astro';
+
+interface Props {
+  name: string;
+  links: { label: string; href: string }[];
+  cta?: { label: string; href: string };
+}
+const { name, links, cta } = Astro.props;
+---
+<nav aria-label="Primary">
+  <Container class="bar">
+    <b class="name">{name}</b>
+    <div class="links label">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      {cta && <a class="cta" href={cta.href} target="_blank" rel="noopener">{cta.label}</a>}
+      <button id="mode" class="mode label" type="button" aria-label="Switch colour theme">Theme: auto</button>
+    </div>
+  </Container>
+</nav>
+
+<style>
+  nav { background: var(--c-bg); color: var(--c-muted); }
+  .bar { display: flex; justify-content: space-between; align-items: center; gap: 20px; min-height: var(--l-nav-height); }
+  .name { color: var(--c-ink); font-weight: 500; font: 500 0.74rem/1 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; }
+  .links { display: flex; gap: 26px; align-items: center; }
+  .links a:hover { color: var(--c-accent); }
+  .cta { color: var(--c-ink); }
+  .mode { color: var(--c-ink); background: transparent; border: 1px solid var(--c-line); border-radius: 99px; padding: 9px 12px; cursor: pointer; }
+  .mode:hover { border-color: var(--c-accent); }
+  @media (max-width: 760px) { .links a { display: none; } }
+</style>
+
+<script>
+  const btn = document.getElementById('mode') as HTMLButtonElement | null;
+  const modes = ['auto', 'light', 'dark'] as const;
+  const read = () => {
+    try { return localStorage.getItem('mode'); } catch { return null; }
+  };
+  let i = Math.max(0, modes.indexOf((read() as (typeof modes)[number]) ?? 'auto'));
+
+  const apply = () => {
+    const root = document.documentElement;
+    if (modes[i] === 'auto') root.removeAttribute('data-mode');
+    else root.setAttribute('data-mode', modes[i]);
+    if (btn) btn.textContent = `Theme: ${modes[i]}`;
+    try { localStorage.setItem('mode', modes[i]); } catch {}
+  };
+  apply();
+  btn?.addEventListener('click', () => { i = (i + 1) % modes.length; apply(); });
+</script>

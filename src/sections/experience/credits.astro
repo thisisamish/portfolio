@@ -1,0 +1,75 @@
+---
+import Container from '../../components/Container.astro';
+import type { ExperienceContent } from './schema';
+
+interface Props {
+  content: ExperienceContent;
+}
+const { content } = Astro.props;
+---
+<section class="credits" data-credits>
+  <Container>
+    <p class="kicker label">{content.kicker}</p>
+    {content.credits.map((c) => (
+      <div class="credit">
+        <h2 class="verb display">{c.verb}</h2>
+        <p class="desc">{c.text}</p>
+      </div>
+    ))}
+    {content.draft && <p class="draft">Draft copy for layout only.</p>}
+  </Container>
+</section>
+
+<style>
+  .credits { padding-block: 16vh 12vh; }
+  .kicker { color: var(--c-muted); margin: 0 0 clamp(24px, 4vh, 44px); }
+  .credit {
+    --lit: var(--fx-credit-floor);
+    position: relative; display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    gap: 12px clamp(24px, 5vw, 80px); align-items: baseline;
+    padding-block: clamp(20px, 4vh, 44px); border-top: 1px solid var(--c-line);
+  }
+  .credit::before { content: ""; position: absolute; left: 0; top: -1px; height: 1px; width: calc(var(--lit) * 100%); background: var(--c-accent); }
+  .verb {
+    margin: 0; font-size: var(--t-size-verb); line-height: var(--t-display-leading);
+    color: color-mix(in srgb, var(--c-lamp) calc(var(--lit) * 100%), var(--c-base));
+  }
+  .desc {
+    margin: 0; max-width: 44ch; font-size: clamp(1rem, 1.4vw, 1.15rem);
+    color: color-mix(in srgb, var(--c-ink) calc(50% + var(--lit) * 50%), var(--c-base));
+  }
+  .draft { margin: 24px 0 0; font: 400 0.72rem/1.4 var(--f-mono); letter-spacing: 0.08em; color: var(--c-muted); }
+  @media (max-width: 760px) { .credit { grid-template-columns: minmax(0, 1fr); } }
+</style>
+
+<script>
+  // Each credit brightens as it nears the middle of the viewport.
+  function init(root: HTMLElement) {
+    const items = [...root.querySelectorAll<HTMLElement>('.credit')];
+    const floor = parseFloat(getComputedStyle(root).getPropertyValue('--fx-credit-floor')) || 0.2;
+    let visible = false;
+    let queued = false;
+
+    const update = () => {
+      queued = false;
+      const mid = innerHeight * 0.5;
+      const span = innerHeight * 0.38;
+      for (const el of items) {
+        const r = el.getBoundingClientRect();
+        const d = Math.abs(r.top + r.height / 2 - mid);
+        el.style.setProperty('--lit', Math.max(floor, 1 - d / span).toFixed(3));
+      }
+    };
+    const schedule = () => { if (visible && !queued) { queued = true; requestAnimationFrame(update); } };
+
+    addEventListener('scroll', schedule, { passive: true });
+    addEventListener('resize', schedule);
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; schedule(); }, { rootMargin: '10% 0px' }).observe(root);
+  }
+
+  try {
+    document.querySelectorAll<HTMLElement>('[data-credits]').forEach(init);
+  } catch (err) {
+    console.error('credits section failed to start; content still renders', err);
+  }
+</script>

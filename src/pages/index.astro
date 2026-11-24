@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionShell from '../components/SectionShell.astro';
+import { resolveSections } from '../lib/sections';
+
+const sections = resolveSections();
+---
+<Base>
+  {sections.map(({ id, theme, Component, content }) => (
+    <SectionShell id={id} theme={theme}>
+      <Component content={content} />
+    </SectionShell>
+  ))}
+</Base>

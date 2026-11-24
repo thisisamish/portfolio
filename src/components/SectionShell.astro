@@ -1,0 +1,22 @@
+---
+/**
+ * Wraps every section. It supplies the anchor id and the theme scope, so a
+ * section never has to know either. The scope carries its own background and
+ * text colour so a themed section is fully re-skinned, not just re-tinted.
+ */
+interface Props {
+  id: string;
+  theme?: string;
+}
+const { id, theme } = Astro.props;
+---
+<div id={id} data-section={id} data-theme-scope={theme} class="shell"><slot /></div>
+
+<style>
+  .shell {
+    background: var(--c-bg);
+    color: var(--c-ink);
+    font-family: var(--f-body);
+    scroll-margin-top: 0;
+  }
+</style>

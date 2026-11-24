@@ -1,0 +1,82 @@
+# Every word on the site lives in this file.
+# Wrap words in **double asterisks** to emphasise them (accent colour in most sections).
+# Blog posts are the one exception: they will be separate files under src/content/writing/.
+# Banned words are blocked at build time (see src/config/guardrails.ts).
+
+site:
+  name: Amish Verma
+  title: Amish Verma | Software Engineer
+  description: Software engineer who builds mission-critical systems.
+  navCta: # button in the top bar; delete this block to remove it
+    label: Resume
+    href: "#" # TODO: add the current resume link
+
+sections:
+  hero:
+    headline: I build systems that stand the **test of time.**
+    subline: Hi, I'm Amish, a software engineer who builds **mission-critical systems.**
+    cta: { label: See my experience, href: "#experience" }
+    hint: Move your cursor to move the light.
+    touchHint: Touch and drag to move the light.
+
+  experience:
+    kicker: Experience
+    draft: true # shows a "draft copy" note; set to false once the copy is final
+    credits:
+      - verb: Designed
+        text: Two business-critical features, from first requirement to technical design.
+      - verb: Built
+        text: Shipped them into a large, complex product, working with the whole team.
+      - verb: Documented
+        text: Wrote the design documents, onboarding guides and explainers that others use to get started.
+      - verb: Owned
+        text: A subsystem of three modules, with working depth in two more.
+      - verb: Released
+        text: Supported two product releases, one internal and one external, within 13 months.
+
+  work:
+    kicker: Selected work
+    projects:
+      - name: Dev Support
+        description: A full-stack blogging platform with Google sign-in, unique usernames and Markdown posts.
+        href: https://dev-support.vercel.app/
+      - name: Project two
+        description: Placeholder. One line on what it is and why it matters.
+        placeholder: true
+      - name: Project three
+        description: Placeholder. One line on what it is and why it matters.
+        placeholder: true
+
+  about:
+    kicker: About
+    draft: true
+    portrait:
+      # src: /portrait.jpg # drop the photo in public/ and uncomment
+      alt: Portrait of Amish Verma
+      caption: Your portrait goes here
+    lead: I like understanding how things work, and then making them work better for the people who depend on them.
+    paragraphs:
+      - As a kid I clipped the tech columns out of the Sunday newspaper, hoping to build apps like the ones they described. That curiosity never left. I started with the web and moved steadily deeper into **systems**, where fundamentals matter and details count.
+      - At work I'm the person people come to when they're stuck. I notice small things, I write things down so others don't have to guess, and I like leaving a codebase easier to work in than I found it.
+      - Outside work I read, watch far too many films, and eat a lot of noodles.
+    filmsLabel: Four favourite films
+    films:
+      - { title: Flee, year: "2021" }
+      - { title: The Substance, year: "2024" }
+      - { title: All of Us Strangers, year: "2023" }
+      - { title: Veer-Zaara, year: "2004" }
+
+  writing:
+    kicker: Writing
+    title: Notes, soon.
+    body: Occasional writing on engineering, films and books. The first posts are on the way.
+    slots: 2
+    slotLabel: Post title goes here
+    soonLabel: Soon
+
+  contact:
+    heading: Let's **talk.**
+    links:
+      - { label: LinkedIn, href: "https://www.linkedin.com/in/amishverma/" }
+      - { label: GitHub, href: "https://github.com/thisisamish" }
+      - { label: Resume, href: "#" } # TODO: add the current resume link

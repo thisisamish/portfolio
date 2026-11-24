@@ -1,0 +1,122 @@
+---
+import Container from '../../components/Container.astro';
+import { inline, plain } from '../../lib/inline';
+import type { HeroContent } from './schema';
+
+interface Props {
+  content: HeroContent;
+}
+const { content } = Astro.props;
+const headline = inline(content.headline, 'em');
+---
+<header class="hero" data-lit-room data-touch-hint={content.touchHint}>
+  <div class="halo" aria-hidden="true"></div>
+  <Container class="inner">
+    <div class="title">
+      <h1 class="display" aria-label={plain(content.headline)}>
+        <span class="base" aria-hidden="true" set:html={headline} />
+        <span class="lit" aria-hidden="true" set:html={headline} />
+      </h1>
+    </div>
+    <div class="foot">
+      <p class="lead" set:html={inline(content.subline, 'b')} />
+      <div class="act">
+        {content.hint && <p class="hint" data-hint>{content.hint}</p>}
+        <a class="btn" href={content.cta.href}>{content.cta.label}</a>
+      </div>
+    </div>
+  </Container>
+</header>
+
+<style>
+  .hero { position: relative; overflow: hidden; min-height: calc(100svh - var(--l-nav-height)); display: flex; flex-direction: column; }
+  .halo {
+    position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(circle var(--fx-halo-radius) at var(--hx, 35%) var(--hy, 35%), var(--c-halo), transparent 72%);
+  }
+  .inner { flex: 1; display: flex; flex-direction: column; padding-bottom: 36px; }
+  .title { flex: 1; display: flex; align-items: center; padding-block: 6vh; }
+  h1 {
+    display: grid; margin: 0;
+    font-size: var(--t-size-hero); line-height: calc(var(--t-display-leading) - 0.02); text-wrap: balance;
+  }
+  h1 > span { grid-area: 1 / 1; }
+  .base { color: var(--c-base); }
+  .lit {
+    color: var(--c-lamp);
+    -webkit-mask-image: radial-gradient(circle var(--fx-lamp-radius) at var(--lx, 30%) var(--ly, 40%), #000 0%, rgba(0,0,0,.85) 35%, transparent 100%);
+            mask-image: radial-gradient(circle var(--fx-lamp-radius) at var(--lx, 30%) var(--ly, 40%), #000 0%, rgba(0,0,0,.85) 35%, transparent 100%);
+  }
+  h1 :global(em) { font-style: normal; }
+  .lit :global(em) { color: var(--c-accent); }
+
+  .foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px 28px; flex-wrap: wrap; }
+  .lead { margin: 0; max-width: 32ch; font-size: clamp(1.1rem, 1.7vw, 1.4rem); line-height: 1.45; }
+  .lead :global(b) { font-weight: 500; color: var(--c-accent); }
+  .act { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+  .btn {
+    font-weight: 500; font-size: 0.95rem; padding: 14px 22px; border-radius: 99px; display: inline-block;
+    background: var(--c-accent); color: var(--c-btn-fg); border: 1px solid var(--c-accent); transition: background .2s, color .2s;
+  }
+  .btn:hover { background: transparent; color: var(--c-accent); }
+  .hint { font: 400 0.74rem/1.4 var(--f-mono); letter-spacing: 0.08em; color: var(--c-muted); margin: 0; }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .title, .foot { animation: rise 1s cubic-bezier(.2, .7, .2, 1) backwards; }
+  .foot { animation-delay: .35s; }
+</style>
+
+<script>
+  // The lamp: follows the pointer, drifts on its own until the first touch or move, and sleeps while off-screen.
+  function init(root: HTMLElement) {
+    const halo = root.querySelector<HTMLElement>('.halo')!;
+    const h1 = root.querySelector<HTMLElement>('h1')!;
+    const hint = root.querySelector<HTMLElement>('[data-hint]');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (hint && matchMedia('(hover: none)').matches && root.dataset.touchHint) hint.textContent = root.dataset.touchHint;
+
+    const lamp = { x: innerWidth * 0.35, y: innerHeight * 0.38 };
+    let drifting = !reduce;
+    let visible = true;
+    let running = false;
+
+    const render = () => {
+      const hr = root.getBoundingClientRect();
+      halo.style.setProperty('--hx', lamp.x - hr.left + 'px');
+      halo.style.setProperty('--hy', lamp.y - hr.top + 'px');
+      const r = h1.getBoundingClientRect();
+      h1.style.setProperty('--lx', lamp.x - r.left + 'px');
+      h1.style.setProperty('--ly', lamp.y - r.top + 'px');
+    };
+
+    const tick = (t: number) => {
+      if (!drifting || !visible) { running = false; return; }
+      lamp.x = innerWidth * (0.5 + 0.3 * Math.sin(t * 0.00045));
+      lamp.y = innerHeight * (0.38 + 0.14 * Math.sin(t * 0.00032 + 1));
+      render();
+      requestAnimationFrame(tick);
+    };
+    const start = () => { if (!running && drifting && visible) { running = true; requestAnimationFrame(tick); } };
+
+    const move = (x: number, y: number) => {
+      drifting = false;
+      lamp.x = x;
+      lamp.y = y;
+      if (visible) render();
+    };
+    addEventListener('pointermove', (e) => move(e.clientX, e.clientY), { passive: true });
+    addEventListener('touchmove', (e) => { const t = e.touches[0]; if (t) move(t.clientX, t.clientY); }, { passive: true });
+    addEventListener('scroll', () => visible && render(), { passive: true });
+    addEventListener('resize', render);
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) { render(); start(); } }).observe(root);
+
+    render();
+    start();
+  }
+
+  try {
+    document.querySelectorAll<HTMLElement>('[data-lit-room]').forEach(init);
+  } catch (err) {
+    console.error('lit-room hero failed to start; the static headline still renders', err);
+  }
+</script>

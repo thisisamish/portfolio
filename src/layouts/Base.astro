@@ -1,0 +1,37 @@
+---
+import '../design/global.css';
+import Nav from '../components/Nav.astro';
+import { page } from '../config/page';
+import { buildTheme } from '../lib/themeCss';
+import { getContent } from '../lib/content';
+import { plain } from '../lib/inline';
+
+const { site } = getContent();
+const theme = buildTheme(page.flatMap((e) => (e.theme ? [e.theme] : [])));
+const links = page.filter((e) => e.nav).map((e) => ({ label: e.nav!, href: `#${e.id ?? e.type}` }));
+---
+<!doctype html>
+<html lang={site.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{plain(site.title)}</title>
+    <meta name="description" content={plain(site.description)} />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={theme.fontsUrl} />
+    <style is:inline set:html={theme.css}></style>
+    <script is:inline>
+      // Set the colour mode before first paint to avoid a flash.
+      try {
+        var m = localStorage.getItem('mode');
+        if (m === 'light' || m === 'dark') document.documentElement.setAttribute('data-mode', m);
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <Nav name={site.name} links={links} cta={site.navCta} />
+    <main><slot /></main>
+  </body>
+</html>
