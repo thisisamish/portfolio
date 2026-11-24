@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amish Verma Portfolio, experimental</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Concept: a dark room with one warm light. The light follows you, and it travels down the page as you scroll. */
+:root {
+  --bg: #0B0907;
+  --ink: #EFE6D6;
+  --dim: #6A5F50;
+  --accent: #F5A93A;
+  --lamp: #FFD79A;
+  --line: #29231B;
+  color-scheme: dark;
+
+  --display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --body: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+  padding-inline: max(20px, env(safe-area-inset-left, 0px)) max(20px, env(safe-area-inset-right, 0px));
+}
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.wrap { max-width: 1280px; margin: 0 auto; position: relative; z-index: 1; }
+
+.halo {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(circle 520px at var(--hx, 35vw) var(--hy, 35vh), rgba(245, 169, 58, 0.15), rgba(245, 169, 58, 0.05) 45%, transparent 72%);
+}
+
+/* hero */
+.hero { min-height: 100svh; display: flex; flex-direction: column; padding-block: 26px 36px; }
+nav { display: flex; justify-content: space-between; gap: 20px; font: 500 0.74rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
+nav b { color: var(--ink); font-weight: 500; }
+nav .links { display: flex; gap: 26px; }
+nav a:hover { color: var(--lamp); }
+@media (max-width: 700px) { nav .links a:not(:last-child) { display: none; } }
+
+.title { flex: 1; display: flex; align-items: center; padding-block: 8vh; }
+h1 {
+  display: grid; margin: 0; font-family: var(--display); font-weight: 900; text-transform: uppercase;
+  font-size: clamp(3.6rem, 14.2vw, 13.5rem); line-height: 0.86; letter-spacing: -0.005em; text-wrap: balance;
+}
+h1 > span { grid-area: 1 / 1; }
+h1 .base { color: var(--dim); }
+h1 .lit {
+  color: var(--lamp);
+  -webkit-mask-image: radial-gradient(circle 300px at var(--lx, 30%) var(--ly, 40%), #000 0%, rgba(0,0,0,.85) 35%, transparent 100%);
+          mask-image: radial-gradient(circle 300px at var(--lx, 30%) var(--ly, 40%), #000 0%, rgba(0,0,0,.85) 35%, transparent 100%);
+}
+h1 em { font-style: normal; color: var(--accent); }
+
+.foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 28px; flex-wrap: wrap; }
+.lead { margin: 0; max-width: 30ch; font-size: clamp(1.1rem, 1.7vw, 1.4rem); line-height: 1.45; }
+.lead b { font-weight: 500; color: var(--lamp); }
+.act { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.btn { font-weight: 500; font-size: 0.95rem; padding: 14px 22px; border-radius: 99px; background: var(--accent); color: #1A1209; border: 1px solid var(--accent); transition: background .2s, color .2s; }
+.btn:hover { background: transparent; color: var(--accent); }
+.hint { font: 400 0.74rem/1.4 var(--mono); letter-spacing: 0.08em; color: var(--dim); margin: 0; }
+
+/* experience as end credits: the light is a band at the middle of the screen */
+.credits { padding-block: 18vh 14vh; }
+.kicker { font: 500 0.74rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin: 0 0 clamp(24px, 5vh, 48px); }
+.credit {
+  --lit: 0.18;
+  position: relative; display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 12px clamp(24px, 5vw, 80px);
+  align-items: baseline; padding-block: clamp(22px, 4.5vh, 52px); border-top: 1px solid var(--line);
+}
+.credit::before { content: ""; position: absolute; left: 0; top: -1px; height: 1px; width: calc(var(--lit) * 100%); background: var(--accent); }
+.verb {
+  margin: 0; font-family: var(--display); font-weight: 900; text-transform: uppercase;
+  font-size: clamp(3rem, 10.5vw, 9.5rem); line-height: 0.88;
+  color: color-mix(in srgb, var(--lamp) calc(var(--lit) * 100%), var(--dim));
+}
+.desc { margin: 0; max-width: 42ch; font-size: clamp(1rem, 1.5vw, 1.2rem); color: color-mix(in srgb, var(--ink) calc(35% + var(--lit) * 65%), var(--dim)); }
+.draft { margin: 28px 0 0; font: 400 0.72rem/1.4 var(--mono); letter-spacing: 0.08em; color: var(--dim); }
+@media (max-width: 760px) { .credit { grid-template-columns: minmax(0, 1fr); } }
+
+/* contact */
+.contact { border-top: 1px solid var(--line); padding-block: 12vh 8vh; display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+.contact h2 { margin: 0; font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: clamp(3rem, 11vw, 10rem); line-height: 0.88; color: var(--ink); }
+.contact h2 em { font-style: normal; color: var(--accent); }
+.contact ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font: 500 0.8rem/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; }
+.contact li a { color: var(--dim); }
+.contact li a:hover { color: var(--lamp); }
+
+/* entrance: visible at rest, only the arrival is animated */
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.title, .foot { animation: rise 1s cubic-bezier(.2,.7,.2,1) backwards; }
+.foot { animation-delay: .35s; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="halo" id="halo" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="hero">
+    <nav>
+      <b>Amish Verma</b>
+      <div class="links"><a href="#experience">Experience</a><a href="#experience">Work</a><a href="#experience">About</a><a href="#experience">Writing</a><a href="#contact">Contact</a></div>
+    </nav>
+    <div class="title">
+      <h1 id="headline" aria-label="I build systems that stand the test of time.">
+        <span class="base" aria-hidden="true">I build systems that stand the <em>test of time.</em></span>
+        <span class="lit" aria-hidden="true">I build systems that stand the <em>test of time.</em></span>
+      </h1>
+    </div>
+    <div class="foot">
+      <p class="lead">Hi, I'm Amish, a software engineer who builds <b>mission-critical systems.</b></p>
+      <div class="act">
+        <p class="hint" id="hint">Move your cursor to move the light.</p>
+        <a class="btn" href="#experience">See my experience</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="credits" id="experience">
+    <p class="kicker">Experience</p>
+    <div class="credit"><h2 class="verb">Designed</h2><p class="desc">Two business-critical features, from first requirement to technical design.</p></div>
+    <div class="credit"><h2 class="verb">Built</h2><p class="desc">Shipped them into a large, complex product, working with the whole team.</p></div>
+    <div class="credit"><h2 class="verb">Documented</h2><p class="desc">Wrote the design documents, onboarding guides and explainers that others use to get started.</p></div>
+    <div class="credit"><h2 class="verb">Owned</h2><p class="desc">A subsystem of three modules, with working depth in two more.</p></div>
+    <div class="credit"><h2 class="verb">Released</h2><p class="desc">Supported two product releases, one internal and one external, within 13 months.</p></div>
+    <p class="draft">Draft copy for layout only.</p>
+  </section>
+
+  <footer class="contact" id="contact">
+    <h2>Let's <em>talk.</em></h2>
+    <ul>
+      <li><a href="https://www.linkedin.com/in/amishverma/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://github.com/thisisamish" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="#top">Resume</a></li>
+    </ul>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var halo = document.getElementById("halo");
+  var h1 = document.getElementById("headline");
+  var credits = Array.prototype.slice.call(document.querySelectorAll(".credit"));
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var touch = window.matchMedia("(hover: none)").matches;
+  var lamp = { x: window.innerWidth * 0.35, y: window.innerHeight * 0.38 };
+  var drifting = !reduce;
+
+  if (touch) document.getElementById("hint").textContent = "Touch and drag to move the light.";
+
+  function render() {
+    halo.style.setProperty("--hx", lamp.x + "px");
+    halo.style.setProperty("--hy", lamp.y + "px");
+    var r = h1.getBoundingClientRect();
+    h1.style.setProperty("--lx", (lamp.x - r.left) + "px");
+    h1.style.setProperty("--ly", (lamp.y - r.top) + "px");
+  }
+
+  function lightCredits() {
+    var mid = window.innerHeight * 0.5, span = window.innerHeight * 0.38;
+    credits.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      var d = Math.abs(r.top + r.height / 2 - mid);
+      var lit = Math.max(0.18, 1 - d / span);
+      el.style.setProperty("--lit", lit.toFixed(3));
+    });
+  }
+
+  function move(x, y) { drifting = false; lamp.x = x; lamp.y = y; render(); }
+  window.addEventListener("pointermove", function (e) { move(e.clientX, e.clientY); }, { passive: true });
+  window.addEventListener("touchmove", function (e) { if (e.touches[0]) move(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+  window.addEventListener("scroll", function () { render(); lightCredits(); }, { passive: true });
+  window.addEventListener("resize", function () { render(); lightCredits(); });
+
+  function tick(t) {
+    if (drifting) {
+      lamp.x = window.innerWidth * (0.5 + 0.3 * Math.sin(t * 0.00045));
+      lamp.y = window.innerHeight * (0.38 + 0.14 * Math.sin(t * 0.00032 + 1));
+      render();
+      requestAnimationFrame(tick);
+    }
+  }
+  render(); lightCredits();
+  if (!reduce) requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

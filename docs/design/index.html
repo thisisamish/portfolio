@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>html{color-scheme:light}body{margin:0}</style>
+</head>
+<body>
+<title>Amish Verma Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wdth,wght@62..125,500..800&family=Schibsted+Grotesk:wght@500..800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=Libre+Caslon+Display&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=Gloock&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: quiet editorial hero, headline left and portrait right, with one warm light that only the headline lives in. */
+:root {
+  --bg: #EEECE5;
+  --bg-2: #E5E2D8;
+  --fg: #16130E;
+  --muted: #6B665B;
+  --line: #CCC7B9;
+  --accent: #A85A00;
+  --glow: rgba(217, 142, 4, 0.10);
+  --ph-a: #2A241B;
+  --ph-b: #C9A56A;
+
+  --display: "Libre Caslon Display", "Times New Roman", serif;
+  --h-weight: 400;
+  --h-track: -0.02em;
+  --h-style: normal;
+  --h-stretch: normal;
+  --body: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D0C0A; --bg-2: #15130F; --fg: #ECE7DA; --muted: #988F7E; --line: #2B2721;
+    --accent: #F5A93A; --glow: rgba(245, 169, 58, 0.17); --ph-a: #0D0C0A; --ph-b: #B98A45;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D0C0A; --bg-2: #15130F; --fg: #ECE7DA; --muted: #988F7E; --line: #2B2721;
+  --accent: #F5A93A; --glow: rgba(245, 169, 58, 0.17); --ph-a: #0D0C0A; --ph-b: #B98A45;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--body); font-size: 16px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.wrap { max-width: 1180px; margin: 0 auto; }
+
+/* nav */
+nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 28px; }
+.mark { font-family: var(--display); font-weight: var(--h-weight); font-variation-settings: var(--h-stretch); font-size: 1.2rem; letter-spacing: -0.02em; }
+.links { display: flex; gap: 28px; align-items: center; font-size: 0.9rem; color: var(--muted); }
+.links a:hover { color: var(--fg); }
+.toggle {
+  font: 500 0.72rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--fg); background: transparent; border: 1px solid var(--line);
+  padding: 9px 12px; border-radius: 99px; cursor: pointer;
+}
+.toggle:hover { border-color: var(--accent); }
+@media (max-width: 640px) { .links a { display: none; } }
+
+/* hero */
+.hero {
+  position: relative; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: clamp(32px, 6vw, 96px); align-items: center; padding-block: clamp(40px, 8vw, 96px) clamp(40px, 6vw, 72px);
+  isolation: isolate;
+}
+.hero::before {
+  content: ""; position: absolute; z-index: -1; left: -10%; top: -10%; width: 80%; height: 120%;
+  background: radial-gradient(closest-side, var(--glow), transparent 75%);
+  pointer-events: none;
+}
+.eyebrow { font: 400 0.78rem/1.4 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 28px; }
+h1 {
+  font-family: var(--display); font-weight: var(--h-weight); font-variation-settings: var(--h-stretch); margin: 0 0 32px;
+  font-size: clamp(2.7rem, 7.4vw, 6.6rem); line-height: 1; letter-spacing: var(--h-track); text-wrap: balance;
+}
+h1 em { font-style: var(--h-style); color: var(--accent); }
+:root[data-font="b"] { --display: "Bodoni Moda", "Times New Roman", serif; --h-weight: 400; --h-track: -0.03em; --h-style: italic; }
+:root[data-font="c"] { --display: "Gloock", Georgia, serif; --h-weight: 400; --h-track: -0.02em; --h-style: normal; }
+:root[data-font="i"] { --display: "Instrument Serif", "Times New Roman", serif; --h-weight: 400; --h-track: -0.025em; --h-style: italic; }
+:root[data-font="a"] { --display: "Archivo", "Helvetica Neue", Arial, sans-serif; --h-weight: 650; --h-track: -0.04em; --h-style: normal; --h-stretch: "wdth" 108; }
+:root[data-font="s"] { --display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif; --h-weight: 650; --h-track: -0.035em; --h-style: normal; }
+:root[data-font="n"] { --display: "Newsreader", Georgia, serif; --h-weight: 450; --h-track: -0.025em; --h-style: italic; }
+select.toggle { appearance: none; -webkit-appearance: none; padding-right: 12px; }
+select.toggle option { background: var(--bg); color: var(--fg); }
+.lead { max-width: 34ch; font-size: clamp(1.1rem, 1.8vw, 1.35rem); line-height: 1.5; margin: 0 0 36px; }
+.lead b { font-weight: 500; }
+.cta { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.btn {
+  font-weight: 500; font-size: 0.95rem; padding: 14px 22px; border-radius: 99px;
+  background: var(--fg); color: var(--bg); border: 1px solid var(--fg); transition: background .2s, color .2s;
+}
+.btn:hover { background: transparent; color: var(--fg); }
+.btn.ghost { background: transparent; color: var(--fg); border-color: var(--line); }
+.btn.ghost:hover { border-color: var(--accent); }
+
+/* portrait placeholder */
+.portrait { position: relative; aspect-ratio: 4 / 5; max-width: 100%; overflow: hidden; border-radius: 4px; background: linear-gradient(165deg, var(--ph-a), var(--ph-b)); }
+.portrait svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.portrait::after {
+  content: ""; position: absolute; inset: 0; opacity: .35; mix-blend-mode: overlay; pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.4 -.2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.caption { margin-top: 12px; font: 400 0.72rem/1.5 var(--mono); letter-spacing: 0.06em; color: var(--muted); display: flex; justify-content: space-between; gap: 12px; }
+
+/* meta strip */
+.strip { display: flex; justify-content: space-between; gap: 16px 32px; flex-wrap: wrap; padding-block: 22px; border-top: 1px solid var(--line); font: 400 0.8rem/1.5 var(--mono); letter-spacing: 0.04em; color: var(--muted); }
+.strip span b { color: var(--fg); font-weight: 500; }
+
+/* design notes */
+.notes { border-top: 1px solid var(--line); padding-block: clamp(48px, 7vw, 88px); display: grid; gap: clamp(36px, 5vw, 64px); }
+.notes h2 { font-family: var(--display); font-weight: var(--h-weight); font-variation-settings: var(--h-stretch); font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0; letter-spacing: var(--h-track); }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 40px; }
+.cols > div { min-width: 0; }
+.label { font: 400 0.72rem/1.4 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
+.spec-display { font-family: var(--display); font-weight: var(--h-weight); font-variation-settings: var(--h-stretch); font-size: 2.8rem; line-height: 1; margin: 0 0 10px; letter-spacing: var(--h-track); }
+.spec-display i { color: var(--accent); font-style: var(--h-style); }
+.spec-body { margin: 0 0 6px; }
+.spec-mono { font: 400 0.82rem/1.6 var(--mono); color: var(--muted); margin: 0; }
+.sw { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 14px; }
+.sw i { display: block; aspect-ratio: 1; border-radius: 3px; border: 1px solid var(--line); }
+.sw-name { font: 400 0.72rem/1.4 var(--mono); color: var(--muted); margin: 0 0 14px; }
+ul.moments { margin: 0; padding: 0; list-style: none; display: grid; gap: 14px; }
+ul.moments li { padding-left: 16px; border-left: 1px solid var(--accent); }
+ul.moments b { font-weight: 500; display: block; }
+ul.moments span { color: var(--muted); font-size: 0.92rem; }
+
+footer { border-top: 1px solid var(--line); padding-block: 28px 40px; font: 400 0.78rem/1.5 var(--mono); color: var(--muted); }
+
+/* load sequence: visible at rest, only the entrance is animated */
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.eyebrow, h1, .lead, .cta, .portrait { animation: rise .9s cubic-bezier(.2,.7,.2,1) backwards; }
+.eyebrow { animation-delay: .05s; } h1 { animation-delay: .15s; } .lead { animation-delay: .45s; } .cta { animation-delay: .6s; } .portrait { animation-delay: .35s; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+@media (max-width: 820px) {
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .portrait { max-width: 360px; }
+}
+</style>
+
+<div class="wrap">
+  <nav>
+    <a class="mark" href="#top">Amish Verma</a>
+    <div class="links">
+      <a href="#top">Experience</a><a href="#top">Selected work</a><a href="#top">About</a><a href="#top">Writing</a><a href="#top">Contact</a>
+      <select class="toggle" id="font" aria-label="Headline font">
+        <option value="">Libre Caslon Display</option>
+        <option value="b">Bodoni Moda</option>
+        <option value="c">Gloock</option>
+        <option value="i">Instrument Serif</option>
+        <option value="a">Archivo</option>
+        <option value="s">Schibsted Grotesk</option>
+        <option value="n">Newsreader</option>
+      </select>
+      <button class="toggle" id="theme" type="button" aria-label="Switch colour theme">Theme: auto</button>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div>
+      <h1>I build systems that stand the <em>test of time.</em></h1>
+      <p class="lead">Hi, I'm Amish, a software engineer who builds <b>mission-critical systems.</b></p>
+      <div class="cta">
+        <a class="btn" href="#top">See my experience</a>
+        <a class="btn ghost" href="#top">Get in touch</a>
+      </div>
+    </div>
+    <figure style="margin:0">
+      <div class="portrait" role="img" aria-label="Portrait placeholder">
+        <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+          <circle cx="200" cy="190" r="78" fill="var(--bg)" opacity=".16"/>
+          <path d="M40 500 C40 390 120 330 200 330 C280 330 360 390 360 500 Z" fill="var(--bg)" opacity=".16"/>
+        </svg>
+      </div>
+      <figcaption class="caption"><span>Your portrait goes here</span><span>duotone + film grain</span></figcaption>
+    </figure>
+  </header>
+
+  <section class="notes" aria-label="Design notes">
+    <h2>Design notes</h2>
+    <div class="cols">
+      <div>
+        <p class="label">Type</p>
+        <p class="spec-display">Display for <i>drama</i></p>
+        <p class="spec-body">A quiet sans for everything you read at length.</p>
+        <p class="spec-mono">Mono for dates and small details.</p>
+      </div>
+      <div>
+        <p class="label">Palette, both themes</p>
+        <div class="sw" aria-hidden="true">
+          <i style="background:#EEECE5"></i><i style="background:#E5E2D8"></i><i style="background:#16130E"></i><i style="background:#6B665B"></i><i style="background:#A85A00"></i>
+        </div>
+        <p class="sw-name">Paper &middot; ink &middot; one filament accent</p>
+        <div class="sw" aria-hidden="true">
+          <i style="background:#0D0C0A"></i><i style="background:#15130F"></i><i style="background:#ECE7DA"></i><i style="background:#988F7E"></i><i style="background:#F5A93A"></i>
+        </div>
+        <p class="sw-name">Near-black &middot; warm white &middot; the same accent, lit</p>
+      </div>
+      <div>
+        <p class="label">Scroll moments</p>
+        <ul class="moments">
+          <li><b>Opening</b><span>The headline settles in on load, with a soft warm light behind it.</span></li>
+          <li><b>Experience as end credits</b><span>Roles and impact reveal line by line as you scroll.</span></li>
+          <li><b>Into the about section</b><span>One slow transition from work to person.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>Mock for review. Nothing here is final copy.</footer>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById("theme");
+  var root = document.documentElement;
+  var order = ["auto", "light", "dark"];
+  var i = 0;
+  function apply() {
+    var t = order[i];
+    if (t === "auto") root.removeAttribute("data-theme"); else root.setAttribute("data-theme", t);
+    btn.textContent = "Theme: " + t;
+  }
+  btn.addEventListener("click", function () { i = (i + 1) % order.length; apply(); });
+
+  var sel = document.getElementById("font");
+  sel.addEventListener("change", function () {
+    if (sel.value === "") root.removeAttribute("data-font"); else root.setAttribute("data-font", sel.value);
+  });
+})();
+</script>
+
+</body>
+</html>
